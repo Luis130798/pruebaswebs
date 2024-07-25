@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Música</title>
+    <meta name="description" content="Un reproductor de música con nuevas canciones y lanzamientos.">
+    <meta name="keywords" content="música, reproductor, lanzamientos, canciones, radio">
+    <meta name="author" content="Bass Dimension Club">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/color-thief@2.3.2/dist/color-thief.umd.js"></script>
+</head>
+<body>
+    <div class="video-slider">
+        <video class="active" autoplay muted loop>
+            <source src="https://firebasestorage.googleapis.com/v0/b/bassdimensionclub.appspot.com/o/VIDEO%2F39810-423345531_small.mp4?alt=media&token=d53f1bef-24d2-4ec4-9dde-8eaabec7c027" type="video/mp4">
+        </video>
+        <video autoplay muted loop>
+            <source src="https://firebasestorage.googleapis.com/v0/b/bassdimensionclub.appspot.com/o/VIDEO%2Fbackground-video2.mp4?alt=media&token=00bd8a6c-43a0-4fa9-ad3c-284fd71efd44" type="video/mp4">
+        </video>
+        <video autoplay muted loop>
+            <source src="https://firebasestorage.googleapis.com/v0/b/bassdimensionclub.appspot.com/o/VIDEO%2F131058-748849060.mp4?alt=media&token=638aaf5a-f910-414d-9356-332302116120" type="video/mp4">
+        </video>
+        <video autoplay muted loop>
+            <source src="https://firebasestorage.googleapis.com/v0/b/bassdimensionclub.appspot.com/o/VIDEO%2Fbackground-video4.mp4?alt=media&token=dcf67d94-62bf-4fef-88d1-1fc612a0432d" type="video/mp4">
+        </video>
+        <video autoplay muted loop>
+            <source src="https://firebasestorage.googleapis.com/v0/b/bassdimensionclub.appspot.com/o/VIDEO%2Fbackground-video5.mp4?alt=media&token=023087bc-ce10-421f-a25d-4bbc95148c0e" type="video/mp4">
+        </video>
+        <video autoplay muted loop>
+            <source src="https://firebasestorage.googleapis.com/v0/b/bassdimensionclub.appspot.com/o/VIDEO%2Fbackground-video6.mp4?alt=media&token=f606b4f2-5fc6-412a-81a7-5eac9960deaf" type="video/mp4">
+        </video>
+        <video autoplay muted loop>
+            <source src="https://firebasestorage.googleapis.com/v0/b/bassdimensionclub.appspot.com/o/VIDEO%2Fbackground-video7.mp4?alt=media&token=1fba9690-9f65-40f1-95ff-5d3f27be07f7" type="video/mp4">
+        </video>
+        <div class="current-song-title" id="currentSongTitleDisplay">
+            <span id="welcomeText"></span><br>
+            <span id="subText"></span>
+        </div>
+        <div class="radio-player" id="radioPlayerContainer">
+            <button id="radioPlayPauseButton" class="circle-button"><i class="fas fa-play"></i></button>
+            <button id="stopRadioButton"><i class="fas fa-stop"></i></button>
+            <input type="range" id="radioVolumeSlider" min="0" max="1" step="0.1" value="1">
+            <div class="audio-wave" id="audioWave"></div>
+            <div id="radioCurrentTime">0:00</div>
+        </div>
+        <div class="radio-switches">
+            <label class="switch" data-label="FiestaMix">
+                <input type="checkbox" id="fiestaMix">
+                <span class="slider round"></span>
+            </label>
+            <label class="switch" data-label="80s">
+                <input type="checkbox" id="eighties">
+                <span class="slider round"></span>
+            </label>
+            <label class="switch" data-label="EDM">
+                <input type="checkbox" id="edm">
+                <span class="slider round"></span>
+            </label>
+            <label class="switch" data-label="ROCK">
+                <input type="checkbox" id="rock">
+                <span class="slider round"></span>
+            </label>
+            <label class="switch" data-label="News Songs">
+                <input type="checkbox" id="newSongs">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="radio-live-label">Radio BassDimension Club</div>
+        <button class="video-nav left" id="prevVideo">&#9664;</button>
+        <button class="video-nav right" id="nextVideo">&#9654;</button>
+    </div>
+    <header id="mainHeader">
+        <div class="header-content">
+            <img src="https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-logo-horizontal-white-20.png" alt="Spinnin' Records" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="C:\Users\josel\Downloads\BASS\BassDImensionClub-main\livesesion\livesesion.html" id="musicMenu">SETS</a></li>
+                    <li><a href="videos.html">NEWS</a></li>
+                    <li><a href="playlist.html">PLAYLISTS</a></li>
+                    <li><a href="djsmix.html">DJS</a></li>
+                    <li><a href="#">EVENTS</a></li>
+                    <li><a href="#">CONTESTS</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="releases section">
+        <div class="songs-slider-container">
+            <div class="songs-slider" id="songsSlider">
+                <!-- Aquí se generarán las canciones -->
+            </div>
+            <button class="carousel-nav left" id="prevSong">&#9664;</button>
+            <button class="carousel-nav right" id="nextSong">&#9654;</button>
+        </div>
+    </section>
+    <div class="player" id="player">
+        <div class="player-content">
+            <div class="album-cover">
+                <img id="playerAlbumCover" src="" alt="Album Cover">
+            </div>
+            <div class="player-info">
+                <span id="currentSongTitle"></span>
+                <audio id="audioPlayer" hidden></audio>
+                <div class="controls">
+                    <button id="prevButton"><i class="fas fa-backward"></i></button>
+                    <button id="playPauseButton"><i class="fas fa-play"></i></button>
+                    <button id="nextButton"><i class="fas fa-forward"></i></button>
+                    <button id="stopButton"><i class="fas fa-stop"></i></button>
+                    <input type="range" id="progressBar" value="0" min="0" step="1">
+                    <span id="currentTime">0:00</span>
+                    <span id="duration">0:00</span>
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
+        </div>
+        <button id="closePlayer">✖</button>
+    </div>
+    <button id="togglePlayerButton" class="triangle-button"><i class="fas fa-caret-down"></i></button>
+    <iframe src="http://127.0.0.1:5500/BASS/Local%20Spotify/list.html" width="100%" height="470" frameborder="0"></iframe>  
+
+    <section class="modern-player">
+        <div class="album-cover">
+            <img src="https://via.placeholder.com/500" alt="Album Cover" id="albumCover">
+            <button class="playButton" id="imagePlayButton"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="tracklist">
+            <ul id="trackList">
+                
+                <!-- Las canciones se generarán aquí -->
+            </ul>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Spinnin' Records. Todos los derechos reservados.</p>
+        <nav>
+            <ul>
+                <li><a href="#">Términos y condiciones</a></li>
+                <li><a href="#">Política de privacidad</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+</head>
+<body>
+  <header id="mainHeader">
+    <div class="header-content">
+      <img src="https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-logo-horizontal-white-20.png" alt="Spinnin' Records" class="logo">
+      <nav>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="music.html" id="musicMenu">SETS</a></li>
+          <li><a href="videos.html">NEWS</a></li>
+          <li><a href="playlist.html">PLAYLISTS</a></li>
+          <li><a href="djsmix.html">DJS</a></li>
+          <li><a href="#">EVENTS</a></li>
+          <li><a href="#">CONTESTS</a></li>
+          <li><a href="#">ABOUT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div id="player-container" class="player-container">
+    <video id="background-video" class="background-video" autoplay loop muted></video>
+    <div class="background-overlay" id="background-overlay"></div>
+    <div id="current-song" class="current-song hidden">
+      <div class="current-song-details">
+        <img id="current-song-image" class="current-song-image" alt="Current Song">
+        <div class="current-song-info">
+          <p id="current-song-title"></p>
+          <p id="current-song-artist"></p>
+        </div>
+      </div>
+      <audio id="audio-player"></audio>
+      <div class="controls">
+        <button id="prev-button" class="control-button"><i class="fas fa-backward"></i></button>
+        <button id="play-pause-button" class="control-button"><i class="fas fa-play"></i></button>
+        <button id="next-button" class="control-button"><i class="fas fa-forward"></i></button>
+        <input type="range" id="seek-bar" value="0" step="0.01" min="0" max="1" class="control-slider">
+        <div class="time">
+          <span id="current-time">0:00</span> / <span id="total-time">0:00</span>
+        </div>
+        <input type="range" id="volume-control" min="0" max="1" step="0.01" title="Volume" class="control-slider">
+      </div>
+    </div>
+    <button id="video-button" class="video-button"><i class="fas fa-film"></i></button>
+    <div id="video-mode-selector" class="video-mode-selector hidden">
+      <button class="video-mode-button" data-mode="party">Fiesta</button>
+      <button class="video-mode-button" data-mode="calm">Tranquilidad</button>
+      <button class="video-mode-button" data-mode="disco">Discoteca</button>
+      <button class="video-mode-button" data-mode="nature">Naturaleza</button>
+      <button class="video-mode-button" data-mode="abstract">Abstracto</button>
+    </div>
+  </div>
+  <div class="container">
+          <ul id="genre-list" class="filter-list hidden"></ul>
+          <ul id="artist-list" class="filter-list hidden"></ul>
+          <ul id="year-list" class="filter-list hidden"></ul>
+        </li>
+      </ul>
+    </div>
+    <div id="main-section">
+      <div class="filter-container">
+        <div class="filter-menu">
+          <select id="genre-filter" class="filter-select">
+            <option value="all">All Genres</option>
+          </select>
+          <select id="dj-filter" class="filter-select">
+            <option value="all">All DJs</option>
+          </select>
+          <select id="year-filter" class="filter-select">
+            <option value="all">All Years</option>
+          </select>
+          <select id="recent-filter" class="filter-select">
+            <option value="all">All</option>
+            <option value="recent">Recently Added</option>
+          </select>
+        </div>
+      </div>
+      <div id="song-list-container" class="song-list-container">
+        <div id="song-list" class="song-list grid-view"></div>
+      </div>
+      <button id="load-more" class="load-more">Mostrar más</button>
+    </div>
+    <div id="detail-section" class="hidden">
+      <button id="back-button" class="back-button">Back</button>
+      <div id="detail-list-container" class="song-list-container">
+        <div id="detail-list" class="song-list grid-view"></div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
